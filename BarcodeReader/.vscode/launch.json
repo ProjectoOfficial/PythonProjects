@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Python: BarcodeReader",
+            "type": "python",
+            "request": "launch",
+            "program": "BarcodeReader.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--database-path", "C:\\Users\\danie\\OneDrive\\Desktop\\BarcodeReader\\.vscode\\database.csv"]
+        }
+    ]
+}

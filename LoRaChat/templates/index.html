@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoRa Chat</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="icon" href="https://yt3.googleusercontent.com/ytc/AGIKgqMCloG9Pk0FEBEUEtTgNVb7IpcR0iU9BqI00iMM-w=s176-c-k-c0x00ffffff-no-rj" type="image/png">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5" style="font-family: 'Montserrat', sans-serif; font-size: 3rem; color: #363636; text-shadow: 2px 2px 2px #f5f5f5;">LoRa <span style="color: #FF5E5E;">Chat</span></h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title mb-4">Inserisci i dati del mittente</h1>
+            <form action="/" method="POST">
+              <div class="mb-3">
+                <label for="MyUsername" class="form-label">My Username</label>
+                <input type="text" class="form-control" id="MyUsername" name="MyUsername">
+              </div>
+              <div class="mb-3">
+                <label for="MyAddress" class="form-label">My Address</label>
+                <input type="text" class="form-control" id="MyAddress" name="MyAddress">
+              </div>
+              <hr>
+              <h1 class="card-title mb-4">Inserisci i dati del destinatario</h1>
+              <div class="mb-3">
+                <label for="RecUsername" class="form-label">Receiver Username</label>
+                <input type="text" class="form-control" id="RecUsername" name="RecUsername">
+              </div>
+              <div class="mb-3">
+                <label for="RecAddress" class="form-label">Receiver Address</label>
+                <input type="text" class="form-control" id="RecAddress" name="RecAddress">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Invia</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/blE9lzb-eQA" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const MyUsername = document.querySelector("#MyUsername").value;
+        const MyAddress = document.querySelector("#MyAddress").value;
+        const RecUsername = document.querySelector("#RecUsername").value;
+        const RecAddress = document.querySelector("#RecAddress").value;
+        document.cookie = "MyUsername=" + MyUsername + "; path=/";
+        document.cookie = "MyAddress=" + MyAddress + "; path=/";
+        document.cookie = "RecUsername=" + RecUsername + "; path=/";
+        document.cookie = "RecAddress=" + RecAddress + "; path=/";
+        window.location.href = "/";
+        });
+    });
+  </script>
+</body>
+</html>

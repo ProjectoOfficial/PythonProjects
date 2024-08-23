@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LoRa Chat</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="icon" href="https://yt3.googleusercontent.com/ytc/AGIKgqMCloG9Pk0FEBEUEtTgNVb7IpcR0iU9BqI00iMM-w=s176-c-k-c0x00ffffff-no-rj" type="image/png">
+	<style>
+		.chat-container {
+			height: 500px;
+			overflow-y: scroll;
+		}
+		.message-row {
+			margin-bottom: 20px;
+		}
+		.message-bubble {
+			padding: 10px;
+			border-radius: 10px;
+			max-width: 70%;
+			word-break: break-word;
+		}
+		.message-in {
+			background-color: #d4edda;
+			margin-left: 30px;
+		}
+		.message-out {
+			background-color: #f8f9fa;
+			margin-right: 30px;
+			text-align: right;
+		}
+		.text-wrap {
+			word-wrap: break-word;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container my-5">
+		<h1 class="text-center mb-5" style="font-family: 'Montserrat', sans-serif; font-size: 3rem; color: #313131; text-shadow: 2px 2px 2px #f5f5f5;">LoRa <span style="color: #FF5E5E;">Chat</span></h1>
+		<div class="row">
+			<div class="col-md-8 mx-auto">
+				<div class="chat-container bg-light p-3 rounded">
+					<div id="chat" class="mb-3">
+                        <ul class="list-unstyled">
+							{% for message in message_list %}
+							  <li class="text-wrap" style="background-color: white; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
+								<p class="m-0">{{ message }}</p>
+							  </li>
+							{% endfor %}
+						  </ul><style>
+							.text-wrap {
+							  word-wrap: break-word;
+							}
+						  </style>                   
+                    </div>
+				</div>
+				<div class="input-group my-3 d-flex justify-content-between">
+
+					<form action="/chat" method="POST" class="flex-grow-1">
+					  <div class="input-group-append">
+						<textarea class="form-control resize-none rounded" id="chat" name="chat" placeholder="Scrivi un messaggio"></textarea>
+						<button type="submit" id="sendBtn" class="btn btn-success mx-2">Send</button>
+					  </div>
+					</form>
+
+					<form action="/chat" method="GET">
+					  <button type="submit" id="updateBtn" class="btn btn-secondary mx-2">Update</button>
+					</form>
+
+					<form action="/" method="GET">
+					  <button type="submit" id="homeBtn" class="btn btn-primary ml-1">Home</button>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br>
+	<div class="row justify-content-center">
+		<div class="col-md-5">
+		  <div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fzojVucBroM" frameborder="0" allowfullscreen></iframe>
+		  </div>
+		</div>
+	</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		// Selezionare il bottone dalla pagina
+		const deleteCookiesButton = document.querySelector('#homeBtn');
+
+		// Aggiungere un ascoltatore di eventi al bottone
+		deleteCookiesButton.addEventListener('click', function() {
+		// Impostare la data di scadenza dei cookie al momento attuale
+		const now = new Date();
+		now.setTime(now.getTime() - 1);
+		
+		// Recuperare tutti i cookie
+		const cookies = document.cookie.split(';');
+		
+		// Cancellare ogni cookie impostandone la data di scadenza
+		cookies.forEach(cookie => {
+			const [name, value] = cookie.split('=');
+			document.cookie = `${name}=; expires=${now.toUTCString()}; path=/`;
+		});
+		
+		// Ricaricare la pagina per applicare la cancellazione dei cookie
+		window.location.href = "/";
+		});
+	</script>
+
+</body>
+</html>
